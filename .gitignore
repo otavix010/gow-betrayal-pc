@@ -1,0 +1,23 @@
+# nada do jogo entra no repositório
+original/
+ref/
+art/
+test/
+tools/extract/
+*.jar
+!pacote/*.jar
+# saídas
+build/
+dist/
+lib/
+save/
+log.txt
+# texto original do jogo (extraído do .jar): não vai para o repositório
+traducao/en.txt
+# SoundFont (32 MB): vai no pacote de release, não no git
+sons/*.sf2
+
+# pacotes montados
+*.zip
+*.tar.gz
+tools/midi/

@@ -1,0 +1,153 @@
+# God of War: Betrayal - tradução para português do Brasil (port nativo)
+# Formato: tabela|índice|texto   (\n = quebra de linha; frases ausentes ficam no original)
+# Códigos que precisam ficar: ^N no começo (retrato de quem fala), * no começo (texto de fim de capítulo), % (versão).
+# Botões citados são os do controle do Legion: A pular, X atacar, B defender/agarrar, Y trocar arma/magia,
+# Select menu Evoluir, Start pausa. [ e ] são os ícones de esquerda/direita da própria fonte do jogo.
+# As fontes do jogo não têm pontuação nos menus: menus e botões só com letras.
+0|0|Escolher
+0|1|Sair
+0|2|Voltar
+0|4|Cancelar
+0|27|OK
+0|28|Sim
+0|29|Não
+0|36|Lorde Kratos, deseja ativar o áudio?
+0|38|       Jogar       
+0|39|Carregando
+0|40|Ajuda
+0|41|Opções
+0|42|Sobre
+0|43|Pausa
+0|44|Áudio
+0|45|Menu Principal
+0|46|Ajuda
+0|47|Som
+0|48|Música
+0|49|Capítulos
+0|50|Menu principal
+0|51|Voltar
+0|54|Por Esparta
+0|55|Cavaleiro Morto
+0|56|Minotauro
+0|57|Jardim
+0|58|A Fera
+0|59|Ruínas
+0|60|Catacumbas
+0|61|Labirinto
+0|62|A Torre
+0|63|Mensageiro
+0|65|SAIR DO JOGO
+0|114|Controles\nDirecional ou analógico: andar\nA: pular\nX: atacar\nB: defender e agarrar\nY: trocar arma ou magia\nSelect: menu Evoluir\nStart: pausa\n\nCombate\nAperte X para atacar. Aperte várias vezes seguidas para fazer um combo. Kratos também pode fazer combos no ar.\n\nMovimento\nUse o direcional ou o analógico para mover Kratos pelo cenário. Use [ ou ] para correr, A para pular e B para defender ataques.\n\nArmas e Magia\nAperte Y para alternar entre armas e magias. O ícone da arma ou magia equipada fica dentro do Ícone das Lâminas.\n\nBarra de Vida\nA barra verde dentro do Ícone das Lâminas é a Barra de Vida. Ela é recarregada com Orbes Verdes de Vida, deixados por inimigos derrotados e por Baús Verdes brilhantes.\n\nBarra de Magia\nA barra azul dentro do Ícone das Lâminas é a Barra de Magia. Ela é recarregada com Orbes Azuis de Magia, deixados por inimigos derrotados e por Baús Azuis brilhantes.\n\nContador de Orbes Vermelhos\nO contador de Orbes Vermelhos fica logo abaixo do Ícone das Lâminas. Os Orbes Vermelhos servem para evoluir armas e magias. Coletar Orbes Vermelhos de inimigos derrotados e de Baús Vermelhos brilhantes aumenta o contador. Quando um novo nível é liberado, aumenta o máximo de Orbes Vermelhos que podem ser coletados no jogo todo. Quando Kratos tiver coletado o máximo de Orbes disponíveis, eles deixam de aparecer ao abrir Baús ou derrotar inimigos.\n\nMenu Evoluir\nAperte Select para abrir o menu Evoluir. Use cima ou baixo para escolher a arma ou magia que deseja fortalecer e segure X para gastar os Orbes Vermelhos que você juntou.\n\nPenas de Fênix\nAs Penas de Fênix ficam escondidas em Baús sem marca. Cada Pena de Fênix aumenta para sempre o tamanho da Barra de Magia.\n\nOlhos de Górgona\nOs Olhos de Górgona ficam escondidos em Baús sem marca. Cada Olho de Górgona aumenta para sempre o tamanho da Barra de Vida.\n\nModo Arena\nNa Arena, Kratos precisa derrotar o máximo de inimigos que puder sem morrer. Ao derrotar inimigos suficientes, as portas que bloqueiam os andares de cima da Arena se abrem. Neste modo, só o total de inimigos derrotados aparece na parte de baixo da tela.\n\n\n\n\n\n\n\n
+0|115|Versão %\n\n© 2007 Sony Online Entertainment LLC. God of War é uma marca registrada da Sony Computer Entertainment America Inc. SOE e o logo da SOE são marcas registradas da Sony Online Entertainment LLC. Todas as outras marcas pertencem aos seus respectivos donos. Todos os direitos reservados.\n\nProdução, design, gráficos, design de fases e testes: Sony Online Entertainment - Los Angeles\n\nProdutor Executivo: Shalom Mann\nCoprodutor Executivo: Spencer Hunt\nProduzido por Philip Cohen\n \nDiretor de Arte: Nathan Leland\nArtista de Produção: Jeremy Steiner\nDesigner de Fases Chefe: Philip Cohen\nDesigners de Fases: Nathan Leland e Al Barasch\n \nDiretor de Qualidade: Dave Diaz\nLíder de Testes: Efrain Gutierrez\nTestes adicionais: Sony Online Entertainment - Los Angeles\n \nGerente de Distribuição: Tim Pham\nEquipe de Distribuição: Theresa Boscia, Jamie Defrisco, Justin Harper, Ed Rios, Paul Zagala\n\nSuporte: mobile.sonypictures.com/faq\n\nDesenvolvido e portado pela Javaground usando a Javaground Solution.\n\nDesenvolvedor: Steven Lawson\nApoio de Animação: David Frankel\nApoio de Distribuição: Zac Pfaff\nÁudio: Mario Barbosa\nApoio de Ferramentas: obrigado a toda a equipe Javaground!\n\nArte e animação de personagens: WayForward Inc.\nDiretor: Chris Watson\nArtista e Animador Chefe: Marc Gomez\nArte e Animação do Kratos: Chris Kerlegon\nArte e Animação dos Inimigos: Abby Goldsmith, Eun Hi Oh, Rob Buchanan\n\nAgradecimentos Especiais\nDavid Jaffe, Shannon Studstill, Whitney Wade, Cory Balrog e toda a equipe da SCEA Santa Monica. Andreea Enache, Russell Shanks e John Smedley\n\nPort nativo e tradução para o português do Brasil feitos por fãs em 2026.\n\n\n\n
+0|116|LÂMINAS DE\nATENA
+0|117|LÂMINA DE\nÁRTEMIS
+0|118|OLHAR DA\nMEDUSA
+0|119|EXÉRCITO\nDE HADES
+0|120|Jogar
+0|121|\nObrigado pela sua opinião.
+0|122|Desde que derrotou Ares, Kratos, o Deus da Guerra, deleitava-se com seus novos poderes, levando seu exército espartano de conquista em conquista.
+0|124|^6O Olhar da Medusa congela os inimigos por um tempo, mas gasta sua magia. Aperte Y até o ícone da Cabeça da Medusa aparecer no Ícone das Lâminas e segure X para ativar. Aperte Y agora.
+0|125|Não há espaço livre suficiente para salvar o jogo. Libere memória para salvar seu progresso.
+0|128|^2Lorde Kratos!  Defenda-nos!
+0|129|^2Não podemos vencer!  Ajude-nos!  Kratos!
+0|133|^2Pelos deuses!
+0|134|^2A batalha enfureceu os deuses. Eles enviaram o gigante de Hera, Argos, para nos matar!
+0|136|^0A fera de Hera não vai nos impedir de triunfar.
+0|137|^1Quando um Ícone de Seta aparecer sobre a cabeça de Argos, aperte B para iniciar um ataque especial e depois aperte a direção indicada por cada Ícone de Seta para completar o ataque.
+0|141|^2Lorde Kratos! O inimigo se abrigou no templo da vila! Atravesse pelo telhado e nade pela Piscina de Adoração para entrar no templo.
+0|142|^0Eles vão aprender o que significa desafiar o Deus da Guerra.
+0|146|Olá!
+0|147|Olho de Górgona Encontrado
+0|148|Pena de Fênix Encontrada
+0|149|Evoluir
+0|151|Sacrifício Aceito
+0|154|^2Kratos, não conseguimos abrir este portão. Deve haver uma alavanca no alto da escada!
+0|155|^1Todos os inimigos caíram diante do poder esmagador de Kratos e seus guerreiros.
+0|157|*A carnificina de Kratos preocupou muitos no Olimpo, mas o Rei dos Deuses, Zeus, fez vista grossa para os feitos do novo Deus da Guerra.
+0|158|Vida Aumentada
+0|160|Arma
+0|161|^2Corra! Salve-se!
+0|163|^2Alguém soltou o Minotauro! Precisamos fugir!
+0|166|^2Deve haver um motivo para esta pequena abertura na parede...
+0|167|^1O gigante abriu um rastro de destruição, aterrorizando espartanos e inimigos.
+0|168|Continuar para
+0|169| Concluído
+0|170|^2Derrube o monstro no esgoto à frente para prendê-lo!
+0|171|Golpes
+0|173|Você Morreu
+0|174|Continuar
+0|175|^1Os inimigos do templo foram esmagados, e Kratos seguiu em sua batalha.
+0|178|^1Corra até a caixa à frente para agarrá-la automaticamente e aperte [ ou ] para chutar ou puxar.
+0|179|^1Kratos também pode subir nelas e pular de cima delas.
+0|180|^1Aperte A, A para dar um Pulo Duplo.
+0|181|^1Quando um soldado estiver enfraquecido, um Ícone de Seta girando vai aparecer sobre a cabeça dele. Fique ao lado dele e aperte B para agarrá-lo, depois aperte [, ] ou X para acabar com ele.
+0|182|^1O Exército de Hades liberta as almas dos mortos-vivos para matar seus inimigos à distância, mas gasta sua magia.
+0|183|^7Aperte Y até o Ícone da Caveira aparecer no Ícone das Lâminas. Aperte X para ativar. Aperte Y agora.
+0|184|Apagar Progresso
+0|185|Tem certeza?
+0|186|Voltar ao menu principal?
+0|188|^5A poderosa Lâmina de Ártemis corta grupos de inimigos com facilidade, mas gasta sua magia. Aperte Y até o Ícone da Espada Larga aparecer no Ícone das Lâminas e aperte X rapidamente para atacar no chão ou no ar. Aperte Y agora.
+0|189|Magia Aumentada
+0|190|Derrote o máximo de inimigos
+0|191|^0Isso é tudo o que o Olimpo tem para me deter?
+0|194|Rolar
+0|195|restantes
+0|196|Jogar de Novo
+0|197|Menu
+0|198|Tentar de Novo
+0|199|Retomar
+0|200|Alternar
+0|203|^0Você vai pagar pela morte dos meus guerreiros!
+0|206|Total de Abates:
+0|207|Novo Recorde!
+0|208|Recorde:
+0|210|^2Deus da Guerra, nós te invocamos!  Dê-nos força!
+0|211|^0Sigam-me e vocês conhecerão uma vitória como nenhuma outra!
+0|213|^1Aperte Y para alternar entre Armas e Magias.
+0|214|^4Aperte X rapidamente para fazer combos. Para continuar, aperte Y.
+0|215|^1Para abrir a porta brilhante, sacrifique o número de almas inimigas indicado na parte de baixo da tela.
+0|216|^1Orbes Verdes recarregam a Barra de Vida.
+0|217|^1Aperte A para pular. Pule e aperte X rapidamente para atacar no ar.
+0|218|^1Aperte A para se balançar de uma borda quando o Ícone de Seta e o Indicador de Ponto de Balanço aparecerem ao mesmo tempo.
+0|219|^1Aperte B para abrir Baús ou puxar Alavancas quando o Ícone de Seta aparecer.
+0|220|^1Baús Vermelhos dão Orbes Vermelhos que você pode sacrificar para evoluir suas Armas e Magias. Aperte Select para abrir o menu Evoluir. Use cima ou baixo para escolher uma Arma ou Magia e segure X para evoluir.
+0|221|^1Orbes Azuis recarregam a Barra de Magia.
+0|222|Evoluir
+0|223|Nível
+0|224|Para o Próximo
+0|225|nível de poder
+0|226| Orbes
+0|229|^0Cavaleiro morto, ceifador de almas, meus irmãos espartanos não vão se juntar a você no Hades hoje!
+0|230|Kratos derrotou o gigante Argos, mas os deuses ficaram preocupados, pois Argos era criação de Hera, esposa de Zeus e Rainha do Olimpo.  Kratos sabia que havia mais nessa morte do que se podia ver.
+0|231|^1Enquanto Kratos enfrentava a fera de três cabeças, seus soldados gritavam.
+0|232|^2Ajude-nos!
+0|233|^2Lorde Kratos, venha nos ajudar!
+0|234|ligado
+0|235|desligado
+0|236|^1Buscando apenas vingança pela morte de seus homens, Kratos continuou a perseguir o misterioso soldado.
+0|237|^1Mas ficou claro que o soldado não agia sozinho.
+0|238|que puder sem morrer.
+0|239|O Deus da Guerra continuou sua caçada sangrenta ao assassino, cujo mestre desconhecido tramava jogar o Olimpo contra Kratos, mas Zeus não podia mais tolerar a devastação.  O Rei dos Deuses ordenou que Ceryx pusesse fim à violência.
+0|240|Pular
+0|241|Nível Máximo
+0|242|^1Ataque esta parede rachada para destruí-la.
+0|243|^3Kratos, matador de deuses!
+0|244|*O filho de Hermes jazia morto. Kratos, o Fantasma de Esparta, Matador de Deuses, desafiou o Olimpo. Em breve, a Fúria de Zeus cairia sobre ele.
+0|246|Abates:
+0|247|^0Assassino de Argos! A que mestre você serve, que tenta jogar os deuses contra mim?
+0|249|^1Enquanto Kratos perseguia o assassino, Cérbero, o cão do submundo, surgiu das profundezas para lutar.
+0|250|^0Hades! Você solta o Cérbero para me deter, depois das incontáveis almas que eu te mandei?!
+0|251|^0Seus soldados mortos-vivos não vão me deter, Hades! É você quem tenta jogar o Olimpo contra mim?
+0|255|^1Corra até a estátua para agarrá-la automaticamente e aperte [ ou ] para chutar ou puxar.
+0|257|^3Kratos, trago uma mensagem do próprio Zeus. Ouça minhas palavras, Fantasma de Esparta! Seu futuro no Olimpo depende disso.
+0|258|^0Ceryx, mensageiro do Olimpo. Que mensagem você traz?
+0|259|^3Você precisa parar com esta caçada sangrenta, Kratos.
+0|261|^0Filho de Hermes, saia do meu caminho.
+0|262|^0Quem me provoca?
+0|265|^1Assim que Kratos prendeu Argos, o gigante caiu morto.  Gravado nele estava o símbolo de Kratos.
+0|266|^2Você derrotou o gigante Argos!
+0|267|^2Lorde Kratos, o vitorioso!
+0|268|^2Toda honra e glória ao Lorde Kratos!
+0|269|^0Esta vitória não é minha.
+0|270|^2Mas a sua marca está no peito dele.
+0|271|^0Eu lhe digo: eu não matei este gigante.

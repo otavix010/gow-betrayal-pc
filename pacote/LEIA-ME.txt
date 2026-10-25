@@ -1,0 +1,66 @@
+GOD OF WAR: BETRAYAL - PORT NATIVO (Linux / SteamOS)
+====================================================
+
+Port nativo do God of War: Betrayal (2007, celular Java) para PC e portáteis com Linux,
+como Steam Deck e Legion Go S. Não é emulador: o app traz a própria implementação da
+"plataforma do celular" (tela, teclas, som e save) e roda o jogo direto, com:
+
+  - tela cheia de verdade (widescreen): o jogo passa a mostrar mais cenário dos lados, na proporção da
+    sua tela (Legion/Steam Deck: 512x320, 16:10), com imagem nítida
+  - controle de verdade (A pula, X ataca, B defende/agarra, Y troca arma/magia,
+    Select abre o menu Evoluir, Start pausa)
+  - ritmo original de 25 fps, sincronizado com a tela (em 120 Hz: um quadro a cada 5 atualizações)
+  - música e efeitos com a SoundFont GeneralUser GS (o banco interno do Java soa pobre)
+  - o tema do jogo também toca nas fases (no original só toca nos menus)
+  - efeitos com as notas graves demais corrigidas (no original soam como grunhido)
+  - tradução completa para o português do Brasil (com acentos desenhados na fonte do jogo)
+  - correção de um bug do relógio do motor que deixava o jogo ~2x mais rápido em PC
+
+O JOGO NÃO VEM JUNTO. Você precisa do arquivo .jar do God of War: Betrayal
+(versão testada: v0.1.95, inglês, 240x320).
+
+
+COMO USAR
+---------
+1. Extraia a pasta gowb-port em qualquer lugar (ex.: ~/Games/gowb-port).
+2. Coloque o .jar do jogo dentro da pasta "jogo".
+   (Também funciona arrastar o .jar para a janela do app, ou deixar o arquivo em
+   ~/Emulation/roms/j2me, ~/Downloads ou na Área de Trabalho.)
+3. Abra pelo jogar.sh.
+
+Na Steam (Modo Jogo): no Modo Desktop, Steam > Adicionar um jogo > Adicionar um jogo
+não-Steam > Procurar > escolha o jogar.sh. Depois é só abrir pelo Modo Jogo.
+
+
+CONTROLES
+---------
+                 Jogando                      Menus e diálogos
+  Direcional     andar / correr               navegar
+  A              pular                        confirmar
+  X / RB / RT    atacar (segure: magia)       -
+  B / LB / LT    defender, agarrar, abrir     voltar
+  Y              trocar arma ou magia         confirmar
+  Select         menu Evoluir                 -
+  Start          pausa                        confirmar (na pausa: voltar ao jogo)
+
+Teclado: setas, Z pula/confirma, X ataca, C defende, A troca arma, S evoluir,
+Enter pausa, Esc volta.
+
+
+OPÇÕES (no jogar.sh ou nas opções de inicialização da Steam)
+-----------------------------------------------------------
+  --idioma en        texto original em inglês
+  --largura 240      tela original do celular (em pé, com laterais desfocadas)
+  --fps 30           outro ritmo (padrão 25, como o original; acima disso a física do jogo muda)
+  --soundfont nenhuma   usa o banco de sons interno do Java
+  --sem-musica-fases    sem o tema nas fases, como no original
+  --volume-musica 40    volume do tema nas fases, em % (padrão 57)
+  --efeitos original    efeitos com as notas originais
+  --integer          ampliação só em números inteiros
+  --filter nearest   pixels sem suavização (padrão: sharp)
+  --filter smooth    imagem suavizada
+  --no-ambient       laterais pretas em vez do fundo desfocado
+  --windowed         em janela
+  --jogo arquivo.jar usar um .jar específico
+
+Saves ficam na pasta "save" do app. O log da última execução fica em log.txt.

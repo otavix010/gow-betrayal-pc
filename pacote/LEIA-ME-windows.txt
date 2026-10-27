@@ -10,6 +10,8 @@ direto, com:
   - controle de verdade (A pula, X ataca, B defende/agarra, Y troca arma/magia,
     Select abre o menu Evoluir, Start pausa)
   - ritmo original de 25 fps, sincronizado com a tela
+  - VRR (G-SYNC / FreeSync): com a variável GOWB_VRR=1 (o Otavix Launcher liga por padrão), cada
+    quadro vai direto para a tela, e os 25 fps passam lisos num monitor com VRR
   - música e efeitos com a SoundFont GeneralUser GS (o banco interno do Java soa pobre)
   - o tema do jogo também toca nas fases (no original só toca nos menus)
   - efeitos com as notas graves demais corrigidas (no original soam como grunhido)

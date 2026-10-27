@@ -63,6 +63,7 @@ public final class Platform {
             frontW = w;
             frontH = h;
             n = ++frameNo;
+            frameLock.notifyAll();
         }
         FrameListener l = listener;
         if (l != null) l.onFrame(pixels, w, h, n);
@@ -111,10 +112,37 @@ public final class Platform {
         return 1000 / vsyncMedia;
     }
 
-    /** O sleep do laço do motor: com o ritmo pela tela, quem segura o quadro é o vsync. */
+    private static long proximoQuadro;
+
+    /**
+     * O sleep do laço do motor: com o ritmo pela tela, quem segura o quadro é o vsync. Sem ele, o relógio marca um
+     * quadro a cada frameMs exatos: no Windows o Thread.sleep(40) dura ~47 ms (múltiplos de 10 ms não ligam o timer
+     * de 1 ms do Java), o que dava ~21 fps irregulares, e com VRR a tela mostra cada desvio.
+     */
     public static void sleepQuadro(long ms) throws InterruptedException {
         if (pacing && ms <= frameMs) return;
-        sleep(ms);
+        if (virtualClock || ms > frameMs) {
+            sleep(ms);
+            return;
+        }
+        long agora = System.nanoTime(), periodo = frameMs * 1_000_000L;
+        proximoQuadro += periodo;
+        // depois de uma parada (carregamento, janela escondida) recomeça a contar daqui
+        if (proximoQuadro < agora - periodo || proximoQuadro > agora + periodo) proximoQuadro = agora + Math.max(ms, 0) * 1_000_000L;
+        while (proximoQuadro - System.nanoTime() > 2_000_000L) Thread.sleep(1);
+        while (System.nanoTime() < proximoQuadro) Thread.onSpinWait();
+    }
+
+    /** Para a janela com VRR: espera um quadro depois de visto, por até maxMs. */
+    public static void esperaQuadro(long visto, long maxMs) {
+        synchronized (frameLock) {
+            if (frameNo != visto) return;
+            try {
+                frameLock.wait(maxMs);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
     }
 
     private static void esperaVsync() {

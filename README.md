@@ -25,6 +25,8 @@ som do jogo faz parte deste repositório.
 - Ritmo original de 25 fps, sincronizado com a tela quando ela tem um múltiplo próximo (120 Hz: um
   quadro a cada 5 atualizações = 41,7 ms). Rodar mais rápido muda a física, porque o motor arredonda
   contas com o tempo de cada quadro (e abaixo de 16 ms o jogo trava).
+- VRR (G-SYNC / FreeSync) com `GOWB_VRR=1` (o Otavix Launcher liga por padrão): cada quadro vai direto para a
+  tela, e os 25 fps passam lisos num monitor com VRR.
 - Correção de um bug do relógio do motor original que deixava o jogo quase 2x mais rápido em
   máquinas rápidas.
 - Música e efeitos MIDI com a SoundFont [GeneralUser GS](https://www.schristiancollins.com) (licença

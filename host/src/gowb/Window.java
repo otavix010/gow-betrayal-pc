@@ -19,6 +19,12 @@ final class Window {
     private Window() {}
 
     private static boolean windowed, integer, ambient = true, logFps;
+    /**
+     * VRR (G-SYNC / FreeSync), pela variável GOWB_VRR=1 (o launcher passa): a janela troca a imagem só quando o jogo
+     * entrega um quadro, sem esperar a tela, e o ritmo fica no relógio do motor; num monitor com VRR a tela acompanha
+     * os 25 fps do jogo sem tremer. Sem ela, como antes: vsync, com o ritmo pela tela quando ela tem um múltiplo perto.
+     */
+    private static final boolean vrr = "1".equals(System.getenv("GOWB_VRR"));
     private static long fpsT0, fpsN0, ultLog;
     private static int ultW, ultH;
     private static String filter = "sharp";
@@ -92,12 +98,19 @@ final class Window {
         System.out.println("[tela] monitor " + glfwGetMonitorName(mon) + " modo atual " + sw + "x" + sh + "@" + vm.refreshRate() + " | modos: " + modos);
         int ww = windowed ? Platform.width * 3 : sw, wh = windowed ? Platform.height * 3 : sh;
         if (!windowed) glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
+        // GOWB_TEST_WINDOW=x,y (testes, com --windowed): a janela nessa posição, sem tomar o foco
+        String teste = System.getenv("GOWB_TEST_WINDOW");
+        if (teste != null && teste.matches("-?\\d+,-?\\d+")) {
+            glfwWindowHint(GLFW_POSITION_X, Integer.parseInt(teste.split(",")[0]));
+            glfwWindowHint(GLFW_POSITION_Y, Integer.parseInt(teste.split(",")[1]));
+            glfwWindowHint(GLFW_FOCUS_ON_SHOW, GLFW_FALSE);
+        }
         // janela sem borda do tamanho da tela (não usa modo exclusivo: no gamescope ele cai para 1920x1080)
         long win = glfwCreateWindow(ww, wh, "God of War: Betrayal", 0, 0);
         if (win == 0) throw new IllegalStateException("não abriu a janela");
         if (!windowed) glfwSetWindowPos(win, 0, 0);
         glfwMakeContextCurrent(win);
-        glfwSwapInterval(1);
+        glfwSwapInterval(vrr ? 0 : 1);
         GL.createCapabilities();
         glfwSetInputMode(win, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
@@ -131,7 +144,7 @@ final class Window {
 
         // sem o jogo: tela pedindo o .jar, que pode ser arrastado para a janela
         // ritmo: 40 ms por quadro como no original, sincronizado com a tela quando ela tiver um múltiplo próximo
-        Platform.ritmoTela = true;
+        Platform.ritmoTela = !vrr;
         String erro = jar == null ? null : Main.iniciar(jar);
         if (jar == null || erro != null) Mensagem.semJogo(erro);
         glfwSetDropCallback(win, (w, count, names) -> {
@@ -163,7 +176,8 @@ final class Window {
                 fpsT0 = System.nanoTime();
                 fpsN0 = n;
             }
-            if (n != shown && n != 0) {
+            boolean novo = n != shown && n != 0;
+            if (novo) {
                 shown = n;
                 up.clear();
                 up.put(frame).flip();
@@ -174,11 +188,16 @@ final class Window {
 
             int[] fw = new int[1], fh = new int[1];
             glfwGetFramebufferSize(win, fw, fh);
+            if (vrr && !novo && fw[0] == ultW && fh[0] == ultH) {
+                Platform.esperaQuadro(shown, 4);
+                continue;
+            }
             if (fw[0] != ultW || fh[0] != ultH || logFps && System.nanoTime() - ultLog > 5_000_000_000L) {
                 ultW = fw[0];
                 ultH = fh[0];
                 ultLog = System.nanoTime();
-                System.out.printf("[tela] janela %dx%d, tela %.1f Hz, ritmo pela tela: %s%n", ultW, ultH, Platform.hzTela(), Platform.pacing);
+                if (vrr) System.out.printf("[tela] janela %dx%d, VRR: cada quadro do jogo vai direto para a tela%n", ultW, ultH);
+                else System.out.printf("[tela] janela %dx%d, tela %.1f Hz, ritmo pela tela: %s%n", ultW, ultH, Platform.hzTela(), Platform.pacing);
             }
             glViewport(0, 0, fw[0], fh[0]);
             glClearColor(0, 0, 0, 1);
@@ -209,7 +228,7 @@ final class Window {
             quad(pGame, fw[0], fh[0], x0, y0, (float) (x0 + gw), (float) (y0 + gh), 0, 0, ur, 1);
 
             glfwSwapBuffers(win);
-            Platform.vsync();
+            if (!vrr) Platform.vsync();
         }
         sair();
     }

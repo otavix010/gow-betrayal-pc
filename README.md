@@ -1,4 +1,21 @@
-# God of War: Betrayal — port nativo
+<h1 align="center">God of War: Betrayal — port nativo</h1>
+
+<p align="center"><i>God of War: Betrayal (Java ME) — port nativo para Windows, Linux e SteamOS. Requer o seu próprio .jar do jogo.</i></p>
+
+<p align="center">
+  <a href="https://github.com/otavix010/gow-betrayal-pc/releases/latest"><img alt="Versão" src="https://img.shields.io/github/v/release/otavix010/gow-betrayal-pc?label=vers%C3%A3o"></a>
+  <a href="https://github.com/otavix010/gow-betrayal-pc/commits/main"><img alt="Última atualização" src="https://img.shields.io/github/last-commit/otavix010/gow-betrayal-pc?label=%C3%BAltima%20atualiza%C3%A7%C3%A3o"></a>
+  <a href="LICENSE"><img alt="Licença" src="https://img.shields.io/github/license/otavix010/gow-betrayal-pc?label=licen%C3%A7a"></a>
+  <a href="https://github.com/otavix010/otavix-launcher/releases/latest"><img alt="Baixar o Otavix Launcher" src="https://img.shields.io/badge/Otavix%20Launcher-baixar-b00020"></a>
+</p>
+
+<p align="center">
+  <a href="#o-que-o-port-faz">O que o port faz</a> ·
+  <a href="#versão-suportada">Versão suportada</a> ·
+  <a href="#como-usar-windows">Como usar (Windows)</a> ·
+  <a href="#como-usar-linux--steamos">Como usar (Linux / SteamOS)</a> ·
+  <a href="#como-funciona">Como funciona</a>
+</p>
 
 Port nativo do **God of War: Betrayal** (2007, celular Java ME) para **Windows**, **Linux** e **SteamOS**
 (Steam Deck, Legion Go S e afins). Não é emulador genérico: o app tem a própria implementação

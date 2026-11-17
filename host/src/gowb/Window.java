@@ -86,6 +86,49 @@ final class Window {
             }
             """;
 
+    /**
+     * Ícone da janela (barra de tarefas, Alt+Tab): o do próprio .jar do jogador, em quadrado, nos tamanhos que o
+     * sistema pede. A arte é do jogo e não vai no pacote; sem o .jar (ou sem ícone nele) fica o da plataforma.
+     */
+    private static void icone(long win, GameJar jar) {
+        try {
+            byte[] png = jar == null ? null : jar.icone();
+            if (png == null) { System.out.println("[tela] ícone da janela: o .jar não traz ícone (" + (jar == null ? "sem .jar" : jar.manifest.getValue("MIDlet-Icon")) + ")"); return; }
+            java.awt.image.BufferedImage src = javax.imageio.ImageIO.read(new java.io.ByteArrayInputStream(png));
+            if (src == null) { System.out.println("[tela] ícone da janela: o ícone do .jar não é uma imagem que dê para ler"); return; }
+            int[] lados = {16, 24, 32, 48, 64};
+            try (org.lwjgl.glfw.GLFWImage.Buffer imgs = org.lwjgl.glfw.GLFWImage.malloc(lados.length)) {
+                for (int k = 0; k < lados.length; k++) {
+                    int t = lados[k];
+                    java.awt.image.BufferedImage q = new java.awt.image.BufferedImage(t, t, java.awt.image.BufferedImage.TYPE_INT_ARGB);
+                    java.awt.Graphics2D g = q.createGraphics();
+                    // arte de pixel: vizinho mais próximo quando amplia, bilinear quando reduz
+                    double esc = Math.min((double) t / src.getWidth(), (double) t / src.getHeight());
+                    g.setRenderingHint(java.awt.RenderingHints.KEY_INTERPOLATION, esc >= 1
+                            ? java.awt.RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR
+                            : java.awt.RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+                    int w = Math.max(1, (int) Math.round(src.getWidth() * esc)), h = Math.max(1, (int) Math.round(src.getHeight() * esc));
+                    g.drawImage(src, (t - w) / 2, (t - h) / 2, w, h, null);
+                    g.dispose();
+                    java.nio.ByteBuffer px = BufferUtils.createByteBuffer(t * t * 4);
+                    for (int y = 0; y < t; y++) {
+                        for (int x = 0; x < t; x++) {
+                            int c = q.getRGB(x, y);
+                            px.put((byte) (c >> 16)).put((byte) (c >> 8)).put((byte) c).put((byte) (c >>> 24));
+                        }
+                    }
+                    px.flip();
+                    imgs.position(k).width(t).height(t).pixels(px);
+                }
+                imgs.position(0);
+                glfwSetWindowIcon(win, imgs);
+            }
+            System.out.println("[tela] ícone da janela: o do .jar do jogo");
+        } catch (Throwable e) {
+            System.out.println("[tela] ícone da janela: não deu (" + e + ")");
+        }
+    }
+
     static void run(GameJar jar) {
         if (!glfwInit()) throw new IllegalStateException("GLFW não iniciou");
         glfwDefaultWindowHints();
@@ -108,6 +151,7 @@ final class Window {
         // janela sem borda do tamanho da tela (não usa modo exclusivo: no gamescope ele cai para 1920x1080)
         long win = glfwCreateWindow(ww, wh, "God of War: Betrayal", 0, 0);
         if (win == 0) throw new IllegalStateException("não abriu a janela");
+        icone(win, jar);
         if (!windowed) glfwSetWindowPos(win, 0, 0);
         glfwMakeContextCurrent(win);
         glfwSwapInterval(vrr ? 0 : 1);
@@ -152,6 +196,7 @@ final class Window {
             for (int i = 0; i < count; i++) {
                 java.nio.file.Path p = java.nio.file.Paths.get(org.lwjgl.glfw.GLFWDropCallback.getName(names, i));
                 GameJar j = Localizador.abrir(p);
+                if (j != null && j.problema() == null) icone(w, j);
                 String e = j == null ? "não consegui ler " + p.getFileName() : j.problema();
                 if (e == null) {
                     try {

@@ -27,7 +27,12 @@ if ($LASTEXITCODE -ne 0) { throw 'jlink falhou' }
 $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
 $vs = & $vswhere -latest -products * -property installationPath
 $clang = Join-Path $vs 'VC\Tools\Llvm\x64\bin\clang.exe'
-cmd /c "`"$vs\Common7\Tools\VsDevCmd.bat`" -arch=amd64 -host_arch=amd64 >nul && `"$clang`" -O2 pacote\abrir.c -o `"$p\GoW Betrayal.exe`" -luser32 -Wl,/subsystem:windows -Wl,/entry:wWinMainCRTStartup"
+# o exe leva o ícone neutro do Otavix (pacote\otavix.ico); a janela e o atalho usam o ícone do .jar do jogador
+$rc = Join-Path $vs 'VC\Tools\Llvm\x64\bin\llvm-rc.exe'
+New-Item -ItemType Directory -Force 'build' | Out-Null
+& $rc /fo build\abrir.res pacote\abrir.rc
+if ($LASTEXITCODE -ne 0) { throw 'llvm-rc falhou' }
+cmd /c "`"$vs\Common7\Tools\VsDevCmd.bat`" -arch=amd64 -host_arch=amd64 >nul && `"$clang`" -O2 pacote\abrir.c build\abrir.res -o `"$p\GoW Betrayal.exe`" -luser32 -Wl,/subsystem:windows -Wl,/entry:wWinMainCRTStartup"
 if ($LASTEXITCODE -ne 0) { throw 'clang falhou' }
 
 $zip = Join-Path $root 'gowb-port-windows-x64.zip'

@@ -48,6 +48,30 @@ final class GameJar {
         return p.length >= 3 ? p[2].trim() : null;
     }
 
+    /** O ícone do jogo dentro do .jar (MIDlet-Icon, ou o segundo campo do MIDlet-1); null se não houver. */
+    byte[] icone() {
+        Attributes at = manifest;
+        // um .jar cujo manifesto não é a primeira entrada: o JarInputStream não o entrega, mas ele está nas entradas
+        byte[] cru = entries.get("META-INF/MANIFEST.MF");
+        if (at.getValue("MIDlet-Icon") == null && at.getValue("MIDlet-1") == null && cru != null) {
+            try {
+                at = new Manifest(new ByteArrayInputStream(cru)).getMainAttributes();
+            } catch (IOException e) {
+                return null;
+            }
+        }
+        String nome = at.getValue("MIDlet-Icon");
+        if (nome == null || nome.isBlank()) {
+            String m = at.getValue("MIDlet-1");
+            String[] p = m == null ? new String[0] : m.split(",");
+            nome = p.length >= 2 ? p[1] : null;
+        }
+        if (nome == null) return null;
+        nome = nome.trim();
+        while (nome.startsWith("/")) nome = nome.substring(1);
+        return nome.isEmpty() ? null : entries.get(nome);
+    }
+
     /** null se for o God of War: Betrayal que o port conhece; senão, o motivo. */
     String problema() {
         if (!entries.containsKey("GOWMIDlet.class")) return "este .jar não é o God of War: Betrayal";

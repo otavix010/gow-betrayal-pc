@@ -39,6 +39,8 @@ som do jogo faz parte deste repositório.
   ao formato original (em pé, com fundo desfocado nas laterais).
 - Ampliação nítida ("sharp bilinear").
 - Controle de verdade, com mapeamento que muda entre jogo e menus.
+- Teclado com as teclas trocáveis (e os botões do mouse no mapa): página Controles do Otavix Launcher,
+  ou `GOWB_TECLAS="botão=teclas;..."` sem ele; `GOWB_TECLADO=0` desliga (detalhes no LEIA-ME).
 - Ritmo original de 25 fps, sincronizado com a tela quando ela tem um múltiplo próximo (120 Hz: um
   quadro a cada 5 atualizações = 41,7 ms). Rodar mais rápido muda a física, porque o motor arredonda
   contas com o tempo de cada quadro (e abaixo de 16 ms o jogo trava).

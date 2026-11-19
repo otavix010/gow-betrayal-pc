@@ -43,8 +43,13 @@ CONTROLES
   Select         menu Evoluir                 -
   Start          pausa                        confirmar (na pausa: voltar ao jogo)
 
-Teclado: setas, Z pula/confirma, X ataca, C defende, A troca arma, S evoluir,
-Enter pausa, Esc volta.
+Teclado (padrão): setas, Z pula/confirma, X ataca, C defende, A troca arma, S evoluir,
+Enter pausa, Esc volta. No Otavix Launcher, a página Controles troca a tecla de cada botão
+(também aceita os botões do mouse) e desliga o teclado. Sem o launcher, a variável
+GOWB_TECLAS="botão=teclas;botão=teclas" faz o mesmo, por exemplo GOWB_TECLAS="a=k;x=j"
+(botões: up down left right a b x y lb rb back start; teclas pela posição no teclado:
+a-z, 0-9, f1-f12, space, enter, escape, tab, backspace, lshift, up, down, left, right,
+num0-num9, mouse1-mouse5...). GOWB_TECLADO=0 desliga o teclado.
 
 
 OPÇÕES (no jogar.sh ou nas opções de inicialização da Steam)

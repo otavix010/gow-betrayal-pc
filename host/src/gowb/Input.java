@@ -13,6 +13,7 @@ import org.lwjgl.glfw.GLFWGamepadState;
  * Menus:    direcional navegar | A, Start confirmar | B voltar
  * Teclado:  setas | Z pular/confirmar | X atacar | C defender | A troca (*) | S evolução (#)
  *           Enter pausa/confirmar | Esc voltar | numpad e Q/W (soft keys) direto
+ *           (padrão; 19/11: trocável pela página Controles do launcher, ver {@link Teclas})
  * </pre>
  */
 final class Input {
@@ -24,12 +25,15 @@ final class Input {
     private static final int ST_JOGANDO = 100;
 
     private final long window;
+    private final Teclas teclas;
     private final GLFWGamepadState pad = GLFWGamepadState.create();
     private final boolean[] held = new boolean[256];
     private String lastSeen = "";
+    private String ultimoTeste = "";
 
     Input(long window) {
         this.window = window;
+        this.teclas = new Teclas(window);
     }
 
     /** 102 = menu de pausa, 105 = animação de entrada da pausa. */
@@ -41,8 +45,9 @@ final class Input {
         return Hooks.estado();
     }
 
+    /** As teclas fixas do celular (numpad, Q/W); GOWB_TECLADO=0 as desliga também. */
     private boolean key(int k) {
-        return glfwGetKey(window, k) == GLFW_PRESS;
+        return teclas.fixa(k);
     }
 
     // estado somado de todos os controles conectados (qualquer um controla o jogo)
@@ -84,19 +89,24 @@ final class Input {
         boolean lt = axis(has, GLFW_GAMEPAD_AXIS_LEFT_TRIGGER) > 0.3f;
         boolean rt = axis(has, GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER) > 0.3f;
 
-        boolean left = btn(has, GLFW_GAMEPAD_BUTTON_DPAD_LEFT) || lx < -0.5f || key(GLFW_KEY_LEFT);
-        boolean right = btn(has, GLFW_GAMEPAD_BUTTON_DPAD_RIGHT) || lx > 0.5f || key(GLFW_KEY_RIGHT);
-        boolean dUp = btn(has, GLFW_GAMEPAD_BUTTON_DPAD_UP) || key(GLFW_KEY_UP);
-        boolean dDown = btn(has, GLFW_GAMEPAD_BUTTON_DPAD_DOWN) || key(GLFW_KEY_DOWN);
-        boolean a = btn(has, GLFW_GAMEPAD_BUTTON_A) || key(GLFW_KEY_Z) || key(GLFW_KEY_SPACE);
-        boolean b = btn(has, GLFW_GAMEPAD_BUTTON_B) || key(GLFW_KEY_ESCAPE) || key(GLFW_KEY_BACKSPACE);
-        boolean x = btn(has, GLFW_GAMEPAD_BUTTON_X) || key(GLFW_KEY_X);
-        boolean y = btn(has, GLFW_GAMEPAD_BUTTON_Y) || key(GLFW_KEY_A);
-        boolean lb = btn(has, GLFW_GAMEPAD_BUTTON_LEFT_BUMPER) || lt || key(GLFW_KEY_C);
-        boolean rb = btn(has, GLFW_GAMEPAD_BUTTON_RIGHT_BUMPER) || rt;
-        boolean back = btn(has, GLFW_GAMEPAD_BUTTON_BACK) || key(GLFW_KEY_S);
-        boolean start = btn(has, GLFW_GAMEPAD_BUTTON_START) || key(GLFW_KEY_ENTER);
+        boolean left = btn(has, GLFW_GAMEPAD_BUTTON_DPAD_LEFT) || lx < -0.5f || teclas.seg("left");
+        boolean right = btn(has, GLFW_GAMEPAD_BUTTON_DPAD_RIGHT) || lx > 0.5f || teclas.seg("right");
+        boolean dUp = btn(has, GLFW_GAMEPAD_BUTTON_DPAD_UP) || teclas.seg("up");
+        boolean dDown = btn(has, GLFW_GAMEPAD_BUTTON_DPAD_DOWN) || teclas.seg("down");
+        boolean a = btn(has, GLFW_GAMEPAD_BUTTON_A) || teclas.seg("a");
+        boolean b = btn(has, GLFW_GAMEPAD_BUTTON_B) || teclas.seg("b");
+        boolean x = btn(has, GLFW_GAMEPAD_BUTTON_X) || teclas.seg("x");
+        boolean y = btn(has, GLFW_GAMEPAD_BUTTON_Y) || teclas.seg("y");
+        boolean lb = btn(has, GLFW_GAMEPAD_BUTTON_LEFT_BUMPER) || lt || teclas.seg("lb");
+        boolean rb = btn(has, GLFW_GAMEPAD_BUTTON_RIGHT_BUMPER) || rt || teclas.seg("rb");
+        boolean back = btn(has, GLFW_GAMEPAD_BUTTON_BACK) || teclas.seg("back");
+        boolean start = btn(has, GLFW_GAMEPAD_BUTTON_START) || teclas.seg("start");
 
+        if (teclas.teste()) {   // testes: cada mudança dos botões vindos do teclado no log
+            String agora = (a ? "a " : "") + (b ? "b " : "") + (x ? "x " : "") + (y ? "y " : "") + (lb ? "lb " : "") + (rb ? "rb " : "")
+                    + (back ? "back " : "") + (start ? "start " : "") + (left ? "left " : "") + (right ? "right " : "") + (dUp ? "up " : "") + (dDown ? "down " : "");
+            if (!agora.equals(ultimoTeste)) { ultimoTeste = agora; System.out.println("[teclado] botões " + (agora.isEmpty() ? "(nenhum)" : agora.trim())); }
+        }
         boolean[] want = new boolean[256];
         int st = gameState();
         if (st == ST_JOGANDO) {

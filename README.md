@@ -132,6 +132,12 @@ O código deste repositório está sob a [licença MIT](LICENSE). O pacote inclu
 SoundFont GeneralUser GS (licença em `sons/`) e um Java enxuto do Eclipse Temurin (GPLv2 com Classpath
 Exception, avisos em `jre/legal`).
 
+## Como é feito
+
+**Como é feito:** o Otavix é um projeto de fãs, sem fins lucrativos, desenvolvido com a ajuda de assistentes de IA (Claude, da Anthropic), que escrevem e testam boa parte do código sob a direção do autor. Cada versão passa por testes antes de ser publicada, e os reports dos jogadores entram no mesmo ciclo.
+
+**How it is made:** Otavix is a non-profit fan project developed with the help of AI assistants (Anthropic's Claude), which write and test much of the code under the author's direction. Every release is tested before it is published, and player reports feed the same loop.
+
 ## Créditos
 
 God of War é marca da Sony Interactive Entertainment. God of War: Betrayal foi produzido pela
